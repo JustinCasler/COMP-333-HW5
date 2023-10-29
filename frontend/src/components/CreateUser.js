@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function CreateUser() {
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -31,7 +32,7 @@ export default function CreateUser() {
         .then((response) => {
           if (response.data.status === 1) {
             // Registration was successful
-            setMessage("Registration successful.");
+            navigate("/user/login");
           } else {
             // Registration failed, display the error message from the backend
             setMessage(response.data.message);
