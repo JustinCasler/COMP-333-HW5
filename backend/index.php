@@ -50,7 +50,8 @@ function register($data) {
     $sql = "INSERT INTO users(username, password) VALUES(:username, :password)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':username', $data->inputs->username);
-    $stmt->bindParam(':password', $hashedPassword); // Store the hashed password
+    // Store the hashed password
+    $stmt->bindParam(':password', $hashedPassword);
 
     if ($stmt->execute()) {
         $response = ['status' => 1, 'message' => 'Registration successful.'];
@@ -78,6 +79,9 @@ function login($data) {
         // Verify the password
         if (password_verify($data->inputs->password, $hashedPassword)) {
             // Password is correct, return a success response
+            session_start();
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $data->inputs->username;
             $response = ['status' => 1, 'message' => 'Login successful.'];
         } else {
             // Password is incorrect, return an error response
