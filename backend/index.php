@@ -110,10 +110,9 @@ function login($data) {
 
 
 function addnew($data) {
-    
-    $username = 'binh';
 
     // Extract necessary information from the $data object
+    $username = $data->username;
     $artist = $data->inputs->artist ?? null;
     $song = $data->inputs->song ?? null;
     $rating = $data->inputs->rating ?? null;

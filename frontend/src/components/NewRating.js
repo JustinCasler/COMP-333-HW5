@@ -20,7 +20,7 @@ export default function NewRating() {
         event.preventDefault();
 
         // Perform your axios post request here
-        axios.post("http://localhost/backend/index.php", { inputs, action: "addnew" })
+        axios.post("http://localhost/backend/index.php", { inputs, action: "addnew", username: user })
         .then((response) => {
             if (response.data.status === 1) {
                 // Song was added
@@ -41,6 +41,7 @@ export default function NewRating() {
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <h1>Add New Rating</h1>
+                    {user && <p>Username: {user}</p>}
                     {message && <p className="text-danger">{message}</p>}
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
