@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { useAuth } from "./Auth"
+
 export default function NewRating() {
+    const { user } = useAuth();
     const [inputs, setInputs] = useState({});
     const [message, setMessage] = useState("");
     const navigate = useNavigate();

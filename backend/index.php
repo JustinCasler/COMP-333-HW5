@@ -84,10 +84,7 @@ function login($data) {
         // Verify the password
         if (password_verify($data->inputs->password, $hashedPassword)) {
             // Password is correct, return a success response
-            session_start();
-            $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $data->inputs->username;
-            $response = ['status' => 1, 'message' => 'Login successful.'];
+            $response = ['status' => 1, 'message' => 'Login successful.', 'username' => $data->inputs->username];
         } else {
             // Password is incorrect, return an error response
             $response = ['status' => 0, 'message' => 'Invalid username or password.'];

@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { useAuth } from "./Auth";
+
 export default function Login() {
+  const { setUser } = useAuth();
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
@@ -29,6 +32,7 @@ export default function Login() {
         .then((response) => {
           if (response.data.status === 1) {
             // Login was successful
+            setUser(response.data.username);
             setMessage("Login successful.");
             navigate("/");
           } else {
