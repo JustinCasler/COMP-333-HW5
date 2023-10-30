@@ -27,6 +27,9 @@ if ($method === "POST") {
             case "addnew":
                 addnew($data);
                 break;
+            case "update":
+                update($data);
+                break;
         }
     }
 }
@@ -206,5 +209,36 @@ function getRating() {
         }
     } else {
         echo "Error preparing the statement: " . $conn->error;
+    }
+}
+
+function update($data) {
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $id = $data->id ?? null;
+    $artist = $data->inputs->artist ?? null;
+    $song = $data->inputs->song ?? null;
+    $rating = $data->inputs->rating ?? null;
+
+    if ($id === null || $artist === null || $song === null || $rating === null) {
+        $response = ['status' => 0, 'message' => 'Incomplete data provided'];
+        echo json_encode($response);
+        return;
+    }
+
+    $sql = "UPDATE ratings SET artist = :artist, song = :song, rating = :rating WHERE ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':artist', $artist);
+    $stmt->bindParam(':song', $song);
+    $stmt->bindParam(':rating', $rating);
+    $stmt->bindParam(':id', $id);
+
+    if ($stmt->execute()) {
+        $response = ['status' => 1, 'message' => 'Song Rating updated'];
+        echo json_encode($response);
+    } else {
+        $response = ['status' => 0, 'message' => 'Error updating song rating'];
+        echo json_encode($response);
     }
 }
