@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import SongOverview from './components/SongOverview';
 import CreateUser from './components/CreateUser';
 import Login from './components/Login';
+import NewRating from './components/NewRating';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
 import './App.css';
@@ -22,12 +23,16 @@ function App() {
             <li>
               <Link to="user/login">Login</Link>
             </li>
+            <li>
+              <Link to="user/newrating">Add New Rating</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
           <Route index element={<SongOverview />} />
           <Route path="user/create" element={<CreateUser />} />
           <Route path="user/login" element={<Login />} />
+          <Route path="user/newrating" element={<NewRating />} />
         </Routes>
       </BrowserRouter>
     </div>
