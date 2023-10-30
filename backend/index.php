@@ -31,6 +31,16 @@ if ($method === "POST") {
     }
 }
 
+if ($method === "GET") {
+    $action = $_GET['action'] ?? '';
+
+    switch ($action) {
+        case "overview":
+            loadOverview();
+            break;
+    }
+}
+
 function register($data) {
     $objDb = new DbConnect;
     $conn = $objDb->connect();
@@ -145,7 +155,26 @@ function addnew($data) {
             $response = ['status' => 0, 'message' => 'Error adding new song rating'];
             echo json_encode($response);
         }
+    }  
+}
+
+
+function loadOverview() {
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $sql = "SELECT ID, username, artist, song, rating FROM ratings";
+    $stmt = $conn->prepare($sql);
+    
+
+    if ($stmt) {
+        if ($stmt->execute()) {
+            $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($response);
+        } else {
+            echo "Error executing the query: " . $stmt->error;
+        }
+    } else {
+        echo "Error preparing the statement: " . $conn->error;
     }
-    
-    
 }

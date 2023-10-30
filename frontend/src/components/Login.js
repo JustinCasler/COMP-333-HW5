@@ -28,7 +28,7 @@ export default function Login() {
 
       // Perform your login logic here
       axios
-        .post("http://localhost/backend/login.php", { inputs, action: "login" })
+        .post("http://localhost/backend/index.php", { inputs, action: "login" })
         .then((response) => {
           if (response.data.status === 1) {
             // Login was successful
