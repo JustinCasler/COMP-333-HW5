@@ -4,6 +4,7 @@ import CreateUser from './components/CreateUser';
 import Login from './components/Login';
 import NewRating from './components/NewRating';
 import Update from './components/Update';
+import Delete from './components/Delete';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
 import './App.css';
@@ -38,6 +39,7 @@ function App() {
           <Route path="user/login" element={<Login />} />
           <Route path="user/newrating" element={<NewRating />} />
           <Route path="user/update" element={<Update />} />
+          <Route path="user/delete" element={<Delete />} />
         </Routes>
       </BrowserRouter>
     </div>
