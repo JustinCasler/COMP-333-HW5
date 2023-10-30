@@ -38,6 +38,9 @@ if ($method === "GET") {
         case "overview":
             loadOverview();
             break;
+        case "getRating":
+            getRating();
+            break;
     }
 }
 
@@ -172,6 +175,34 @@ function loadOverview() {
             echo json_encode($response);
         } else {
             echo "Error executing the query: " . $stmt->error;
+        }
+    } else {
+        echo "Error preparing the statement: " . $conn->error;
+    }
+}
+
+function getRating() {
+    // Retrieve the song details based on the provided ID
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $id = $_GET['id'] ?? null;
+    
+    if ($id === null) {
+        echo json_encode(['error' => 'ID not provided']);
+        return;
+    }
+
+    $sql = "SELECT ID, username, artist, song, rating FROM ratings WHERE ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+
+    if ($stmt) {
+        if ($stmt->execute()) {
+            $response = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($response);
+        } else {
+            echo json_encode(['error' => 'Error fetching song details']);
         }
     } else {
         echo "Error preparing the statement: " . $conn->error;

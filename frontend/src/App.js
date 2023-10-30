@@ -3,6 +3,7 @@ import SongOverview from './components/SongOverview';
 import CreateUser from './components/CreateUser';
 import Login from './components/Login';
 import NewRating from './components/NewRating';
+import Update from './components/Update';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; 
 import './App.css';
@@ -26,6 +27,9 @@ function App() {
             <li>
               <Link to="user/newrating">Add New Rating</Link>
             </li>
+            <li>
+              <Link to="user/update">Update</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
@@ -33,6 +37,7 @@ function App() {
           <Route path="user/create" element={<CreateUser />} />
           <Route path="user/login" element={<Login />} />
           <Route path="user/newrating" element={<NewRating />} />
+          <Route path="user/update" element={<Update />} />
         </Routes>
       </BrowserRouter>
     </div>
