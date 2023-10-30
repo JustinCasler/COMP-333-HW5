@@ -98,57 +98,55 @@ function login($data) {
     echo json_encode($response);
 }
 
+
+
 function addnew($data) {
-    session_start();
-    if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'] ?? null;
+    
+    $username = 'binh';
 
-        // Extract necessary information from the $data object
-        $artist = $data->inputs->artist ?? null;
-        $song = $data->inputs->song ?? null;
-        $rating = $data->inputs->rating ?? null;
+    // Extract necessary information from the $data object
+    $artist = $data->inputs->artist ?? null;
+    $song = $data->inputs->song ?? null;
+    $rating = $data->inputs->rating ?? null;
 
-        if ($username === null || $artist === null || $song === null || $rating === null) {
-            $response = ['status' => 0, 'message' => 'Incomplete data provided'];
-            echo json_encode($response);
-            return;
-        }
-
-        $objDb = new DbConnect;
-        $conn = $objDb->connect();
-
-        // Check if the user has already rated the same song by the same artist
-        $sql_check = "SELECT id FROM ratings WHERE username = :username AND artist = :artist AND song = :song";
-        $stmt_check = $conn->prepare($sql_check);
-        $stmt_check->bindParam(':username', $username);
-        $stmt_check->bindParam(':artist', $artist);
-        $stmt_check->bindParam(':song', $song);
-        $stmt_check->execute();
-
-        if ($stmt_check->rowCount() > 0) {
-            $response = ['status' => 0, 'message' => 'You have already rated this song by the same artist.'];
-            echo json_encode($response);
-            return;
-        } else {
-            // Insert the new rating into the "ratings" table using a prepared statement
-            $sql = "INSERT INTO ratings (username, artist, song, rating) VALUES (:username, :artist, :song, :rating)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':artist', $artist);
-            $stmt->bindParam(':song', $song);
-            $stmt->bindParam(':rating', $rating);
-
-            if ($stmt->execute()) {
-                $response = ['status' => 1, 'message' => 'New Song Rating added'];
-                echo json_encode($response);
-            } else {
-                $response = ['status' => 0, 'message' => 'Error adding new song rating'];
-                echo json_encode($response);
-            }
-        }
-    } else {
-        $response = ['status' => 0, 'message' => 'User not logged in'];
+    if ($username === null || $artist === null || $song === null || $rating === null) {
+        $response = ['status' => 0, 'message' => 'Incomplete data provided'];
         echo json_encode($response);
+        return;
     }
+
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    // Check if the user has already rated the same song by the same artist
+    $sql_check = "SELECT id FROM ratings WHERE username = :username AND artist = :artist AND song = :song";
+    $stmt_check = $conn->prepare($sql_check);
+    $stmt_check->bindParam(':username', $username);
+    $stmt_check->bindParam(':artist', $artist);
+    $stmt_check->bindParam(':song', $song);
+    $stmt_check->execute();
+
+    if ($stmt_check->rowCount() > 0) {
+        $response = ['status' => 0, 'message' => 'You have already rated this song by the same artist.'];
+        echo json_encode($response);
+        return;
+    } else {
+        // Insert the new rating into the "ratings" table using a prepared statement
+        $sql = "INSERT INTO ratings (username, artist, song, rating) VALUES (:username, :artist, :song, :rating)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':artist', $artist);
+        $stmt->bindParam(':song', $song);
+        $stmt->bindParam(':rating', $rating);
+
+        if ($stmt->execute()) {
+            $response = ['status' => 1, 'message' => 'New Song Rating added'];
+            echo json_encode($response);
+        } else {
+            $response = ['status' => 0, 'message' => 'Error adding new song rating'];
+            echo json_encode($response);
+        }
+    }
+    
     
 }
