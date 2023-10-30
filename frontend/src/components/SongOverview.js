@@ -66,11 +66,14 @@ export default function SongOverview() {
                                     <td>{song.song}</td>
                                     <td>{song.rating}</td>
                                     <td>
-                                        <Link to={`viewrating.php?id=${song.ID}`} className="btn btn-info me-1">View</Link>
                                         {user === song.username && (
                                             <>
-                                                <Link to={`update.php?id=${song.ID}`} className="btn btn-warning me-1">Update</Link>
-                                                <Link to={`delete.php?id=${song.ID}`} className="btn btn-danger">Delete</Link>
+                                                <Link to={`/user/update?id=${song.ID}`} className="btn btn-warning me-1">
+                                                    Update
+                                                </Link>
+                                                <Link to={`/user/delete?id=${song.ID}`} className="btn btn-danger">
+                                                    Delete
+                                                </Link>
                                             </>
                                         )}
                                     </td>

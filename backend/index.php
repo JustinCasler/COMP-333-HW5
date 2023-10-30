@@ -27,6 +27,9 @@ if ($method === "POST") {
             case "addnew":
                 addnew($data);
                 break;
+            case "update":
+                update($data);
+                break;
         }
     }
 }
@@ -37,6 +40,9 @@ if ($method === "GET") {
     switch ($action) {
         case "overview":
             loadOverview();
+            break;
+        case "getRating":
+            getRating();
             break;
     }
 }
@@ -175,5 +181,64 @@ function loadOverview() {
         }
     } else {
         echo "Error preparing the statement: " . $conn->error;
+    }
+}
+
+function getRating() {
+    // Retrieve the song details based on the provided ID
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $id = $_GET['id'] ?? null;
+    
+    if ($id === null) {
+        echo json_encode(['error' => 'ID not provided']);
+        return;
+    }
+
+    $sql = "SELECT ID, username, artist, song, rating FROM ratings WHERE ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+
+    if ($stmt) {
+        if ($stmt->execute()) {
+            $response = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($response);
+        } else {
+            echo json_encode(['error' => 'Error fetching song details']);
+        }
+    } else {
+        echo "Error preparing the statement: " . $conn->error;
+    }
+}
+
+function update($data) {
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $id = $data->id ?? null;
+    $artist = $data->inputs->artist ?? null;
+    $song = $data->inputs->song ?? null;
+    $rating = $data->inputs->rating ?? null;
+
+    if ($id === null || $artist === null || $song === null || $rating === null) {
+        $response = ['status' => 0, 'message' => 'Incomplete data provided'];
+        echo json_encode($response);
+        return;
+    }
+
+    $sql = "UPDATE ratings SET artist = :artist, song = :song, rating = :rating WHERE ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':artist', $artist);
+    $stmt->bindParam(':song', $song);
+    $stmt->bindParam(':rating', $rating);
+    $stmt->bindParam(':id', $id);
+
+    if ($stmt->execute()) {
+        $response = ['status' => 1, 'message' => 'Song Rating updated'];
+        echo json_encode($response);
+    } else {
+        $response = ['status' => 0, 'message' => 'Error updating song rating'];
+        echo json_encode($response);
     }
 }
