@@ -7,6 +7,7 @@ export default function SongOverview() {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [songs, setSongs] = useState([]);
+    const [sortBy, setSortBy] = useState(""); // State to store the selected sorting option
 
     const handleLogout = () => {
         navigate("/user/login");
@@ -16,15 +17,20 @@ export default function SongOverview() {
         if (!user) {
             navigate("/user/login");
         } else {
-            axios.get("http://localhost/backend/index.php", { params: { action: "overview" } })
+            axios.get("http://localhost/backend/index.php", { params: { action: "overview", sort_by: sortBy } })
                 .then((response) => {
                     setSongs(response.data);
+                    console.log(response.data)
                 })
                 .catch((error) => {
                     console.error("Error fetching songs: ", error);
                 });
         }
-    }, [user, navigate]);
+    }, [user, navigate, sortBy]);
+
+    const handleSort = (e) => {
+        setSortBy(e.target.value);
+    };
 
     return (
         <div className="container mt-4">
@@ -41,6 +47,13 @@ export default function SongOverview() {
                     <Link to="/user/newrating" className="btn btn-secondary">
                         Add new Song Rating
                     </Link>
+                    <select className="form-select ms-3" onChange={handleSort}>
+                        <option value="">Sort By</option>
+                        <option value="artist">Artist (A-Z)</option>
+                        <option value="-artist">Artist (Z-A)</option>
+                        <option value="rating">Rating (Low to High)</option>
+                        <option value="-rating">Rating (High to Low)</option>
+                    </select>
                 </div>
             </div>
 
@@ -49,7 +62,6 @@ export default function SongOverview() {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Username</th>
                                 <th>Artist</th>
                                 <th>Song</th>
@@ -60,7 +72,6 @@ export default function SongOverview() {
                         <tbody>
                             {songs.map((song) => (
                                 <tr key={song.ID}>
-                                    <td>{song.ID}</td>
                                     <td>{song.username}</td>
                                     <td>{song.artist}</td>
                                     <td>{song.song}</td>
@@ -86,5 +97,3 @@ export default function SongOverview() {
         </div>
     );
 }
-
-
