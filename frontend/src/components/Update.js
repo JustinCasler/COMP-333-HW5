@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./Auth";
 
@@ -21,7 +21,6 @@ export default function UpdateRating() {
             axios.get(`http://localhost/backend/index.php?id=${id}`, { params: { action: "getRating" } })
                 .then((response) => {
                     setRatingData(response.data);
-                    console.log(response);
                     setInputs(response.data); // set initial form data
                 })
                 .catch((error) => {

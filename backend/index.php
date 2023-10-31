@@ -30,6 +30,9 @@ if ($method === "POST") {
             case "update":
                 update($data);
                 break;
+            case "delete":
+                delete($data);
+                break;
         }
     }
 }
@@ -239,6 +242,31 @@ function update($data) {
         echo json_encode($response);
     } else {
         $response = ['status' => 0, 'message' => 'Error updating song rating'];
+        echo json_encode($response);
+    }
+}
+
+function delete($data) {
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $id = $data->id ?? null;
+
+    if ($id === null) {
+        $response = ['status' => 0, 'message' => 'Incomplete data provided'];
+        echo json_encode($response);
+        return;
+    }
+
+    $sql = "DELETE FROM ratings WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+
+    if ($stmt->execute()) {
+        $response = ['status' => 1, 'message' => 'Rating deleted'];
+        echo json_encode($response);
+    } else {
+        $response = ['status' => 0, 'message' => 'Error during deletion'];
         echo json_encode($response);
     }
 }
