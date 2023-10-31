@@ -23,7 +23,6 @@ export default function Login() {
     if (!inputs.username || !inputs.password) {
       setError("Please don't leave any field blank.");
     } else {
-      // Reset error state
       setError(null);
 
       // Perform your login logic here
