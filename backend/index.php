@@ -39,10 +39,10 @@ if ($method === "POST") {
 
 if ($method === "GET") {
     $action = $_GET['action'] ?? '';
-
+    $sort_by = $_GET['sort_by'] ?? null; ;
     switch ($action) {
         case "overview":
-            loadOverview();
+            loadOverview($sort_by);
             break;
         case "getRating":
             getRating();
@@ -167,11 +167,31 @@ function addnew($data) {
 }
 
 
-function loadOverview() {
+function loadOverview($sort_by) {
     $objDb = new DbConnect;
     $conn = $objDb->connect();
 
-    $sql = "SELECT ID, username, artist, song, rating FROM ratings";
+    $sort = '';
+
+    switch ($sort_by) {
+        case 'artist':
+            $sort = ' ORDER BY artist ASC';
+            break;
+        case '-artist':
+            $sort = ' ORDER BY artist DESC';
+            break;
+        case 'rating':
+            $sort = ' ORDER BY rating ASC';
+            break;
+        case '-rating':
+            $sort = ' ORDER BY rating DESC';
+            break;
+        default:
+            // Default sorting or no sorting
+            $sort = '';
+    }
+
+    $sql = "SELECT ID, username, artist, song, rating FROM ratings $sort";
     $stmt = $conn->prepare($sql);
     
 
