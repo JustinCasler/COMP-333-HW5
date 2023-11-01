@@ -34,18 +34,24 @@ export default function SongOverview() {
 
     return (
         <div className="container mt-4">
-            {user ? <p>Welcome, {user}!</p> : <p>You are not logged in.</p>}
+
+            <div className="d-flex justify-content-center">
+                <div className="d-flex align-items-center">
+                    <img src="/pulse.jpeg" alt="PlaylistPulse" style={{ width: "80px", marginRight: "10px" }} />
+                    <h1 style={{ margin: "0" }}>PlaylistPulse</h1>
+                </div>
+            </div>
 
             <div className="d-flex justify-content-between align-items-center mb-2">
                 <h1>Song Overview</h1>
                 <div className="d-flex justify-content-end">
                     {user && (
-                        <button className="btn btn-secondary me-2" onClick={handleLogout}>
+                        <button className="btn btn-secondary btn-sm me-2" onClick={handleLogout}>
                             Logout
                         </button>
                     )}
-                    <Link to="/user/newrating" className="btn btn-secondary">
-                        Add new Song Rating
+                    <Link to="/user/newrating" className="btn btn-secondary btn-sm">
+                        Add New Song Rating
                     </Link>
                     <select className="form-select ms-3" onChange={handleSort}>
                         <option value="">Sort By</option>
@@ -57,12 +63,13 @@ export default function SongOverview() {
                 </div>
             </div>
 
+
             <div className="row">
-                <div className="col-md-8">
+                <div className="col">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>Username</th>
+                                <th>User</th>
                                 <th>Artist</th>
                                 <th>Song</th>
                                 <th>Rating</th>
