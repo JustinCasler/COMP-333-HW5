@@ -24,7 +24,6 @@ export default function CreateUser() {
     } else if (inputs.password.length < 10) {
       setError("Password must be at least 10 characters long.");
     } else {
-      // Reset error state
       setError(null);
 
       // Perform your axios post request here
@@ -45,7 +44,6 @@ export default function CreateUser() {
   };
 
   const handleClear = () => {
-    // Clear form inputs and reset error state
     setInputs({});
     setError(null);
   };
