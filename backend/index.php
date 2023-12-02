@@ -33,6 +33,9 @@ if ($method === "POST") {
             case "delete":
                 delete($data);
                 break;
+            case "deleteuser":
+                deleteUser($data);
+                break;
         }
     }
 }
@@ -289,4 +292,30 @@ function delete($data) {
         $response = ['status' => 0, 'message' => 'Error during deletion'];
         echo json_encode($response);
     }
+}
+
+function deleteUser($data) {
+    $objDb = new DbConnect;
+    $conn = $objDb->connect();
+
+    $username = $data->username ?? null;
+    var_dump($username);
+    if ($username === null) {
+        $response = ['status' => 0, 'message' => 'Incomplete data provided'];
+        echo json_encode($response);
+        return;
+    }
+
+    // Delete user by username
+    $sql = "DELETE FROM users WHERE username = :username";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':username', $username);
+
+    if ($stmt->execute()) {
+        $response = ['status' => 1, 'message' => 'User deleted'];
+    } else {
+        $response = ['status' => 0, 'message' => 'Error during user deletion'];
+    }
+    echo json_encode($response);
+    return $response;
 }
