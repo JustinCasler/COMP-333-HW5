@@ -1,77 +1,26 @@
-# COMP-333-HW3
+# COMP-333-HW5
+**This repo contains the code for testing https://github.com/JustinCasler/COMP-333-HW3.**
+
 ## 1. Setup:
+- Clone this repo
+- Follow inital set up as outlined [here](https://github.com/JustinCasler/COMP-333-HW3/blob/main/README.md)
+  - Installing node,
+  - Installing the correct dependancies
+  - Installing xxamp
+  - The same database setup
+  - Dragging the backend folder from this repo into the htdocs folder.
+  - Starting the MySQL and Apache servers from manager-osx
+## 2. PHP Unit Tests
+- Make sure that the backend folder of this repo is copied into the htdocs filder in xxamp application
+- Make sure that the MySQL and Apache servers from manager-osx are running
+- Make sure you have PHP unit installed. See [here](https://github.com/JustinCasler/COMP-333-HW3/blob/main/testing-setup.md) for instructions.  
+- In MusicAppTest.php change the 80 in `private $baseUri = "http://localhost:80/backend/index.php"` to be whatever the port is of your Apache Web Server.
+- Now initalize your database like so:
+  - To start the app, cd (or navigate in the terminal) to the frontend and paste `npm start` into the terminal
+  - Register a new user with the username: `existing_user_test_user` and password: `existing_user_test_password`
+  - Now login, and create a song ratings of your choice so the ratings table is not empty. 
+- In the `testPost_DeleteSong()`, we need to update $existingSongId to be the song ID of an existing song. Before `testPost_DeleteSong()` runs we run `testPost_NewSong` which creates a song for us to delete. Before running the test take note of what the id the next song created will have. So if only 1 song has ever been created which happened in the step above, then set $existingSongId = 2, after you run the tests once now $existingSongId = 3, etc. 
 
-Ensure that you have node and npm installed.
-To check, run: 
-```bash
-node -v
-```
-If you dont have node navigate to [here](https://sebastianzimmeck.de/teaching/comp333/comp333.html), download on 'React Tutorial,' and open "react_install_instructions.pdf".
-Follow the instructions to install node.
-
-Now clone this repository.
-## 2. Development
-
-### Frontend 
-Cd to the frontend directory. Run
-```bash
-npm install
-```
-to install all necessary dependencies. 
-From the frontend directory use
-```bash
-npm start
-```
-to start a local host of the react project.
-### Backend
-- Download xxamp
-- Start the MySql Database and Apache web server from manager-osx which comes with xxamp.
-- Go into the htdocs folder within xxamp directory and drag this projects 'backend' folder into htdocs.
-- Once your servers have started navigate to http://localhost/phpmyadmin and set up your database to these specifications:
-  - Your database, which you should call music_db, should contain the following two tables:
-<img width="587" alt="Screenshot 2023-10-31 at 1 54 25 PM" src="https://github.com/JustinCasler/COMP-333-HW3/assets/97986810/448836bb-e3cd-4bfd-a492-5e54ece73838">
-
-  - The id attribute in the ratings table is just an integer that is consecutively increased by one as a tuple (row) is being added. Incrementing should be done via MySQLs autoincrement (AI) feature accessible via phpMyAdmin.
-  - You can use the varchar(255) type for username, password, song, and artist. You can use int(11) and int(1) and type for id and rating.
-  - You can paste this command into the sql tab in the phpMyAdmin to create these tables.
-```sql
-CREATE TABLE `users` (
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `artist` varchar(255) NOT NULL,
-  `song` varchar(255) NOT NULL,
-  `rating` int(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-## Structure:
-### MVC
-- Model: index.php in the backend. This file receives data from the controller, adds it to the database, and can send responses back to the view  
-- View: Each functional component contains react jsx code that makes up the UI and can pass data to the controller. 
-- Controller: Each component contains JS that makes calls to the model to do something with new data given by the user and can update the UI.
-
-### Important Files:
-Frontend
-- App.js: Entry point, contains routes for each component.
-- Components/Auth.js: maintains user state, which is used in other components.
-- Components/CreateUser.js: Registration page and makes api calls to the backend to add users to the database.
-- Components/Delete.js: Deletion page for songs and makes api calls to the backend to delete songs from ratings table.
-- Components/Login.js: Login page and makes api calls to to the backend to verify user's existence.
-- Components/NewRating.js: Form for users to add song ratings and makes api calls to the backend to add new songs to ratings table.
-- Components/SongOverview.js: Home page that shows all the songs that have been rated and allows access to update and delete. Makes api calls to get all songs.
-- Components/Update.js: Form to update an existing song and makes api calls to update the song in the database as well
-- 
-Backend
-- index.js: contains a switch statement that runs different functions based on the action requested. Each function will perform one of the CRUD actions and returns a response to the component that made the call.
-
-## Problem #2
-- We choose to 'Add Sort or Search Functionality, e.g., search for all songs from a particular artist or with an average rating above a certain threshold.' In the song overview page, you can choose to sort by a variety of options via the dropdown menu.
-
+- Now that the database is prepared correctly, navigate ->backend->test-project, and run `php vendor/bin/phpunit tests/MusicAppTest.php`
+- The output should print in the terminal
+ 
