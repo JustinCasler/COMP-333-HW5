@@ -59,7 +59,7 @@ export default function CreateUser() {
               {message && <p className="text-danger text-center">{message}</p>}
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="username" className="form-label">Username:</label>
+                  <label htmlFor="username" className="form-label">New Username:</label>
                   <input
                     type="text"
                     id="username"
@@ -70,7 +70,7 @@ export default function CreateUser() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password:</label>
+                  <label htmlFor="password" className="form-label">New Password:</label>
                   <input
                     type="password"
                     id="password"
