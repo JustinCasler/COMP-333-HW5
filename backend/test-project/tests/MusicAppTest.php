@@ -159,6 +159,7 @@ class MusicAppTest extends TestCase
             ]
         ]);
         $responseData = json_decode($response->getBody(), true);
+        var_dump($responseData);
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(1, $responseData['status']);
@@ -168,7 +169,7 @@ class MusicAppTest extends TestCase
     public function testPost_updateSong()
     {
         // Assuming you have an existing song with ID 1 for testing the update
-        $existingSongId = 1;
+        $existingSongId = 13;
     
         $client = new GuzzleHttp\Client(['base_uri' => $this->baseUri]);
     

@@ -39,4 +39,13 @@ in your terminal. The output should print in the terminal.
 php vendor/bin/phpunit tests/MusicAppTest.php
 ```
 - The output should print in the terminal
+## 4. Frontend Unit Tests with Jest
+- Make sure you have Jest downloaded. It should be included with React
+- At the root folder of the repo, run:
+    `npm i`
+- cd to the frontend folder (where the package.json file is) and run:
+    `npm i`
+- Run Jest tests:
+    `npm run test`
+ ![Alt text](<Screenshot 2023-12-09 at 14.36.08.png>)
  
