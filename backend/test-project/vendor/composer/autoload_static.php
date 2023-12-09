@@ -19,7 +19,6 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
-            'Phpunit\\Project\\' => 16,
             'PhpParser\\' => 10,
         ),
         'G' => 
@@ -32,6 +31,10 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         array (
             'DeepCopy\\' => 9,
         ),
+        'B' => 
+        array (
+            'Binhdo\\TestProject\\' => 19,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -43,10 +46,6 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
-        ),
-        'Phpunit\\Project\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
         ),
         'PhpParser\\' => 
         array (
@@ -67,6 +66,10 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Binhdo\\TestProject\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
@@ -318,6 +321,7 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         'PHPUnit\\Framework\\Attributes\\ExcludeStaticPropertyFromBackup' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/ExcludeStaticPropertyFromBackup.php',
         'PHPUnit\\Framework\\Attributes\\Group' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/Group.php',
         'PHPUnit\\Framework\\Attributes\\IgnoreClassForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/IgnoreClassForCodeCoverage.php',
+        'PHPUnit\\Framework\\Attributes\\IgnoreDeprecations' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/IgnoreDeprecations.php',
         'PHPUnit\\Framework\\Attributes\\IgnoreFunctionForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/IgnoreFunctionForCodeCoverage.php',
         'PHPUnit\\Framework\\Attributes\\IgnoreMethodForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/IgnoreMethodForCodeCoverage.php',
         'PHPUnit\\Framework\\Attributes\\Large' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/Large.php',
@@ -534,6 +538,8 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         'PHPUnit\\Logging\\JUnit\\TestFailedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestFailedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestFinishedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestMarkedIncompleteSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestMarkedIncompleteSubscriber.php',
+        'PHPUnit\\Logging\\JUnit\\TestPreparationFailedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPreparationFailedSubscriber.php',
+        'PHPUnit\\Logging\\JUnit\\TestPreparationStartedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPreparationStartedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestPreparedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestPreparedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestRunnerExecutionFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestRunnerExecutionFinishedSubscriber.php',
         'PHPUnit\\Logging\\JUnit\\TestSkippedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/JUnit/Subscriber/TestSkippedSubscriber.php',
@@ -554,26 +560,19 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         'PHPUnit\\Logging\\TestDox\\HtmlRenderer' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/HtmlRenderer.php',
         'PHPUnit\\Logging\\TestDox\\NamePrettifier' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/NamePrettifier.php',
         'PHPUnit\\Logging\\TestDox\\PlainTextRenderer' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/PlainTextRenderer.php',
-        'PHPUnit\\Logging\\TestDox\\Subscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/Subscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestConsideredRiskySubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestConsideredRiskySubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedMockObjectForAbstractClassSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedMockObjectForAbstractClassSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedMockObjectForTraitSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedMockObjectForTraitSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedMockObjectFromWsdlSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedMockObjectFromWsdlSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedMockObjectSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedMockObjectSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedPartialMockObjectSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedPartialMockObjectSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedTestProxySubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedTestProxySubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestCreatedTestStubSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestCreatedTestStubSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestErroredSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestFailedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestFailedSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestFinishedSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestMarkedIncompleteSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestMarkedIncompleteSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestPassedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestPassedSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestPreparedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestPreparedSubscriber.php',
-        'PHPUnit\\Logging\\TestDox\\TestResult' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/TestResult.php',
-        'PHPUnit\\Logging\\TestDox\\TestResultCollection' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/TestResultCollection.php',
-        'PHPUnit\\Logging\\TestDox\\TestResultCollectionIterator' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/TestResultCollectionIterator.php',
-        'PHPUnit\\Logging\\TestDox\\TestResultCollector' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/TestResultCollector.php',
-        'PHPUnit\\Logging\\TestDox\\TestSkippedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestMethod/Subscriber/TestSkippedSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\Subscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/Subscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestConsideredRiskySubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestConsideredRiskySubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestErroredSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestFailedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestFailedSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestFinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestFinishedSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestMarkedIncompleteSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestMarkedIncompleteSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestPassedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestPassedSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestPreparedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestPreparedSubscriber.php',
+        'PHPUnit\\Logging\\TestDox\\TestResult' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/TestResult.php',
+        'PHPUnit\\Logging\\TestDox\\TestResultCollection' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/TestResultCollection.php',
+        'PHPUnit\\Logging\\TestDox\\TestResultCollectionIterator' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/TestResultCollectionIterator.php',
+        'PHPUnit\\Logging\\TestDox\\TestResultCollector' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/TestResultCollector.php',
+        'PHPUnit\\Logging\\TestDox\\TestSkippedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Logging/TestDox/TestResult/Subscriber/TestSkippedSubscriber.php',
         'PHPUnit\\Metadata\\After' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/After.php',
         'PHPUnit\\Metadata\\AfterClass' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/AfterClass.php',
         'PHPUnit\\Metadata\\Annotation\\Parser\\DocBlock' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Parser/Annotation/DocBlock.php',
@@ -603,6 +602,7 @@ class ComposerStaticInit1fc389f537953c55856441d5a3734431
         'PHPUnit\\Metadata\\ExcludeStaticPropertyFromBackup' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/ExcludeStaticPropertyFromBackup.php',
         'PHPUnit\\Metadata\\Group' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Group.php',
         'PHPUnit\\Metadata\\IgnoreClassForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreClassForCodeCoverage.php',
+        'PHPUnit\\Metadata\\IgnoreDeprecations' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreDeprecations.php',
         'PHPUnit\\Metadata\\IgnoreFunctionForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreFunctionForCodeCoverage.php',
         'PHPUnit\\Metadata\\IgnoreMethodForCodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/IgnoreMethodForCodeCoverage.php',
         'PHPUnit\\Metadata\\InvalidVersionRequirementException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/Exception/InvalidVersionRequirementException.php',

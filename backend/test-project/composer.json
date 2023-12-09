@@ -1,17 +1,16 @@
 {
-    "name": "phpunit/project",
+    "name": "binhdo/test-project",
     "require-dev": {
-        "phpunit/phpunit": "^10.4"
+        "phpunit/phpunit": "^10.5"
     },
     "autoload": {
         "psr-4": {
-            "Phpunit\\Project\\": "src/"
+            "Binhdo\\TestProject\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "JustinCasler",
-            "email": "97986810+JustinCasler@users.noreply.github.com"
+            "name": "binhdo"
         }
     ],
     "require": {
