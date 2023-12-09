@@ -4,13 +4,14 @@ use PHPUnit\Framework\TestCase;
 
 class MusicAppTest extends TestCase
 {
-    private $baseUri = "http://localhost:80/backend/index.php"; // Replace with your API base URI
+    // Check Apache Web Server port here
+    private $baseUri = "http://localhost:80/backend/index.php"; 
 
     public function testGet_UserList()
     {
         $client = new GuzzleHttp\Client(['base_uri' => $this->baseUri]);
     
-        // Assuming your API endpoint for user list is '/user-list'
+        
         $response = $client->request('GET', $this->baseUri, [
             'query' => [
                 'action' => 'overview', 
@@ -159,7 +160,6 @@ class MusicAppTest extends TestCase
             ]
         ]);
         $responseData = json_decode($response->getBody(), true);
-        var_dump($responseData);
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(1, $responseData['status']);
@@ -169,7 +169,8 @@ class MusicAppTest extends TestCase
     public function testPost_updateSong()
     {
         // Assuming you have an existing song with ID 1 for testing the update
-        $existingSongId = 13;
+        // If not change $existingSongId to be any existing song id in the database
+        $existingSongId = 1;
     
         $client = new GuzzleHttp\Client(['base_uri' => $this->baseUri]);
     
@@ -193,7 +194,7 @@ class MusicAppTest extends TestCase
     
     public function testPost_DeleteSong()
     {
-        // Must change this variable with each run of the tests
+        // Must change $existingSongId with each run of the tests
         $existingSongId = 1;
     
         $client = new GuzzleHttp\Client(['base_uri' => $this->baseUri]);
