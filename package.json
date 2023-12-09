@@ -4,10 +4,4 @@
     "@testing-library/react": "^14.1.2",
     "jest": "^29.7.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "jest --env=jsdom",
-    "eject": "react-scripts eject"
-  },
 }
