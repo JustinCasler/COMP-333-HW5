@@ -31,14 +31,15 @@ in your terminal. The output should print in the terminal.
 - Now initalize your database like so:
   - To start the app, cd (or navigate in the terminal) to the frontend and paste `npm start` into the terminal
   - Register a new user with the username: `existing_user_test_user` and password: `existing_user_test_password`
-  - Now login, and create a song ratings of your choice so the ratings table is not empty. 
+  - Now login, and create a song ratings of your choice so the ratings table is not empty.
 - In the `testPost_DeleteSong()` function within MusicAppTest.php, we need to update $existingSongId variable to be the song ID of an existing song. Before `testPost_DeleteSong()` runs we run `testPost_NewSong` which creates a song for us to delete. Before running the test take note of what the id the next song created will have. So if only 1 song has ever been created which happened in the step above, then set $existingSongId = 2, after you run the tests once now $existingSongId = 3, etc. 
 
 - Now that the database is prepared correctly, navigate from the main directory to: backend->test-project, and run 
 ```sh
 php vendor/bin/phpunit tests/MusicAppTest.php
 ```
-- The output should print in the terminal
+The output should print in the terminal and look like this:
+<img width="657" alt="Screenshot 2023-12-09 at 2 54 54 PM" src="https://github.com/JustinCasler/COMP-333-HW5/assets/97986810/60d19c02-14ea-4e8d-8256-a3672a6607fd">
 ## 4. Frontend Unit Tests with Jest
 - Make sure you have Jest downloaded. It should be included with React
 - At the root folder of the repo, run:
