@@ -59,25 +59,25 @@ The output should print in the terminal and look like this:
  ## 6. Generative AI
  Large language Model could be useful in creating tests. For example, you could first give Chat GPT some example of a link test for frontend testing:
 
-    ```javascript
-   // views/Layout.test.js
-   import { render, screen, fireEvent } from "@testing-library/react";
-   import { BrowserRouter } from "react-router-dom";
-   import "@testing-library/jest-dom";
-   import Layout from "./Layout";
+```javascript
+ // views/Layout.test.js
+ import { render, screen, fireEvent } from "@testing-library/react";
+ import { BrowserRouter } from "react-router-dom";
+ import "@testing-library/jest-dom";
+ import Layout from "./Layout";
 
-   test("clicking on the Contact link navigates to the Contact page", () => {
-     render(
-       <BrowserRouter>
-         <Layout />
-       </BrowserRouter>
-     );
-     const linkElement = screen.getByText(/Contact/i);
-     fireEvent.click(linkElement);
-     const contactElement = screen.getByText(/Contact/i);
-     expect(contactElement).toBeInTheDocument();
-   });
-   ```
+ test("clicking on the Contact link navigates to the Contact page", () => {
+   render(
+     <BrowserRouter>
+       <Layout />
+     </BrowserRouter>
+   );
+   const linkElement = screen.getByText(/Contact/i);
+   fireEvent.click(linkElement);
+   const contactElement = screen.getByText(/Contact/i);
+   expect(contactElement).toBeInTheDocument();
+ });
+ ```
 Then, you could input the javascript code for the frontend page you want to test and ask the model to generate similar test as the provided example. This is an example result of that query:
 // login.test.js
 import React from 'react';
@@ -85,7 +85,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Login from '../components/Login'; // Update with your actual component
 
-    ``` javascript
+``` javascript
     test('navigates from login to registration page', () => {
           render(
             <MemoryRouter>
@@ -99,7 +99,7 @@ import Login from '../components/Login'; // Update with your actual component
           // Check if the registration page is rendered
           expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument();
         });
-    ```
+```
 The code that is produced by the model usually result in some errors due to contextual problems, such as missing dependencies. However, generative AI is a great tool to provide general guidance or baseline code to work with as presented above.
     
 
