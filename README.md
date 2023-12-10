@@ -17,13 +17,14 @@ python python_unit_test.py
 ```
 in your terminal. The output should print in the terminal.
 ## 2. Problem 2
-- Make syre you have pytest installed, if you don't: See [here](https://github.com/JustinCasler/COMP-333-HW3/blob/main/testing-setup.md) for instructions. 
+- Make sure you have pytest installed, if you don't: See [here](https://github.com/JustinCasler/COMP-333-HW3/blob/main/testing-setup.md) for instructions. 
 From the main directory copy 
 ```sh 
 pytest pytest_unit_testing.py
 ```
 in your terminal. The output should print in the terminal.
 ## 3. PHP Unit Tests
+- Make sure you have phpunit, guzzle, and composer installed, if you don't: See [here](https://github.com/JustinCasler/COMP-333-HW3/blob/main/testing-setup.md) for instructions. 
 - Make sure that the backend folder of this repo is copied into the htdocs filder in xxamp application
 - Make sure that the MySQL and Apache servers from manager-osx are running
 - Make sure you have PHP unit installed. See [here](https://github.com/JustinCasler/COMP-333-HW3/blob/main/testing-setup.md) for instructions.  
