@@ -40,6 +40,7 @@ php vendor/bin/phpunit tests/MusicAppTest.php
 ```
 The output should print in the terminal and look like this:
 <img width="657" alt="Screenshot 2023-12-09 at 2 54 54 PM" src="https://github.com/JustinCasler/COMP-333-HW5/assets/97986810/60d19c02-14ea-4e8d-8256-a3672a6607fd">
+
 ## 4. Frontend Unit Tests with Jest
 - Make sure you have Jest downloaded. It should be included with React
 - At the root folder of the repo, run:
@@ -49,4 +50,57 @@ The output should print in the terminal and look like this:
 - Run Jest tests:
     `npm run test`
  ![Alt text](<Screenshot 2023-12-09 at 14.36.08.png>)
+
+ ## 5. Set Up Continuous Integration for Frontend Unit Test
+
+ ![Alt text](<Screenshot 2023-12-09 at 20.51.30.png>)
+
+ ## 6. Generative AI
+ Large language Model could be useful in creating tests. For example, you could first give Chat GPT some example of a link test for frontend testing:
+
+    ```javascript
+   // views/Layout.test.js
+   import { render, screen, fireEvent } from "@testing-library/react";
+   import { BrowserRouter } from "react-router-dom";
+   import "@testing-library/jest-dom";
+   import Layout from "./Layout";
+
+   test("clicking on the Contact link navigates to the Contact page", () => {
+     render(
+       <BrowserRouter>
+         <Layout />
+       </BrowserRouter>
+     );
+     const linkElement = screen.getByText(/Contact/i);
+     fireEvent.click(linkElement);
+     const contactElement = screen.getByText(/Contact/i);
+     expect(contactElement).toBeInTheDocument();
+   });
+   ```
+Then, you could input the javascript code for the frontend page you want to test and ask the model to generate similar test as the provided example. This is an example result of that query:
+// login.test.js
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import Login from '../components/Login'; // Update with your actual component
+
+    ``` javascript
+    test('navigates from login to registration page', () => {
+          render(
+            <MemoryRouter>
+              <Login />
+            </MemoryRouter>
+          );
+
+          // Click the link to navigate
+          fireEvent.click(screen.getByText(/create one here/i));
+
+          // Check if the registration page is rendered
+          expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument();
+        });
+    ```
+The code that is produced by the model usually result in some errors due to contextual problems, such as missing dependencies. However, generative AI is a great tool to provide general guidance or baseline code to work with as presented above.
+    
+
+
  
